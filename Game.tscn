@@ -36,6 +36,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
 
 [node name="Hazards" type="Spatial" parent="LevelLayer/Level"]
 
+[node name="Spikes2" parent="LevelLayer/Level" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3 )
+
+[node name="Spikes3" parent="LevelLayer/Level" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3 )
+
 [node name="Interface" type="CanvasLayer" parent="."]
 
 [node name="Interface" type="Control" parent="Interface"]
