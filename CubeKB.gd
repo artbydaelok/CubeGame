@@ -8,12 +8,12 @@ onready var pivot = $Pivot
 onready var mesh = $Pivot/MeshInstance
 onready var tween = $Tween
 
-onready var side_one = $Pivot/DiceSides/SideOne
-onready var side_two = $Pivot/DiceSides/SideTwo
-onready var side_three = $Pivot/DiceSides/SideThree
-onready var side_four = $Pivot/DiceSides/SideFour
-onready var side_five = $Pivot/DiceSides/SideFive
-onready var side_six = $Pivot/DiceSides/SideSix
+onready var side_one = $Pivot/MeshInstance/DiceSides/SideOne
+onready var side_two = $Pivot/MeshInstance/DiceSides/SideTwo
+onready var side_three = $Pivot/MeshInstance/DiceSides/SideThree
+onready var side_four = $Pivot/MeshInstance/DiceSides/SideFour
+onready var side_five = $Pivot/MeshInstance/DiceSides/SideFive
+onready var side_six = $Pivot/MeshInstance/DiceSides/SideSix
 
 
 enum SIDES_STATE {ONE, TWO, THREE, FOUR, FIVE, SIX}
@@ -47,15 +47,25 @@ func _physics_process(_delta):
 	
 	# Use Items
 	if Input.is_action_just_pressed("use_item"):
-		pass
-		
+		match up_side:
+			SIDES_STATE.ONE:
+				print("One")
+			SIDES_STATE.TWO:
+				print("Two")
+			SIDES_STATE.THREE:
+				print("Three")
+			SIDES_STATE.FOUR:
+				print("Four")
+			SIDES_STATE.FIVE:
+				print("Five")
+			SIDES_STATE.SIX:
+				print("Six")
+				
 func detect_side_up():
-	print("Player Pos: " + str(self.global_translation))
 	for s in sides:
 		#print(s.name + " " + str(sides[0].global_translation))
 		var s_pos = s.global_translation
 		if s_pos.y == 2:
-			print(s_pos.y)
 			match s:
 				side_one:
 					up_side = SIDES_STATE.ONE
@@ -69,7 +79,6 @@ func detect_side_up():
 					up_side = SIDES_STATE.FIVE
 				side_six:
 					up_side = SIDES_STATE.SIX
-			print (up_side)
 		
 # Movement
 func roll(dir):
