@@ -4,7 +4,7 @@
 [ext_resource path="res://Health System/HealthBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Materials/triplanar_uv.tres" type="Material" id=3]
 [ext_resource path="res://Game.gd" type="Script" id=4]
-[ext_resource path="res://Hazards/SpikesTile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Hazards/FireWallSpawner.tscn" type="PackedScene" id=7]
 
 [node name="Game" type="Node"]
 script = ExtResource( 4 )
@@ -14,33 +14,29 @@ script = ExtResource( 4 )
 [node name="Level" type="Spatial" parent="LevelLayer"]
 
 [node name="CubeKB" parent="LevelLayer/Level" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0176288, 0, -0.0365529 )
 
-[node name="CSGCombiner" type="CSGCombiner" parent="LevelLayer/Level"]
+[node name="LevelGeometry" type="CSGCombiner" parent="LevelLayer/Level"]
 use_collision = true
 
-[node name="CSGBox" type="CSGBox" parent="LevelLayer/Level/CSGCombiner"]
+[node name="CSGBox" type="CSGBox" parent="LevelLayer/Level/LevelGeometry"]
 width = 16.0
 depth = 16.0
 material = ExtResource( 3 )
 
-[node name="CSGBox2" type="CSGBox" parent="LevelLayer/Level/CSGCombiner/CSGBox"]
+[node name="CSGBox2" type="CSGBox" parent="LevelLayer/Level/LevelGeometry/CSGBox"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 operation = 2
 width = 14.0
 depth = 14.0
 material = ExtResource( 3 )
 
-[node name="Spikes" parent="LevelLayer/Level" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+[node name="FireWallSpawner" parent="LevelLayer/Level" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 45, 0, 0 )
+direction = 1
 
-[node name="Hazards" type="Spatial" parent="LevelLayer/Level"]
-
-[node name="Spikes2" parent="LevelLayer/Level" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3 )
-
-[node name="Spikes3" parent="LevelLayer/Level" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3 )
+[node name="FireWallSpawner2" parent="LevelLayer/Level" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50 )
+direction = 1
 
 [node name="Interface" type="CanvasLayer" parent="."]
 

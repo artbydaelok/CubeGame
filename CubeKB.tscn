@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://CubeKB.gd" type="Script" id=1]
 [ext_resource path="res://pixel_dice_tex.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 
 [sub_resource type="SpatialMaterial" id=4]
 albedo_texture = ExtResource( 2 )
+
+[sub_resource type="SphereMesh" id=5]
 
 [sub_resource type="BoxShape" id=2]
 
@@ -22,6 +24,30 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = ExtResource( 3 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 4 )
+
+[node name="DiceSides" type="Spatial" parent="Pivot/MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+
+[node name="SideOne" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0 )
+
+[node name="CSGMesh" type="CSGMesh" parent="Pivot/MeshInstance/DiceSides/SideOne"]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
+mesh = SubResource( 5 )
+
+[node name="SideTwo" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="SideThree" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1 )
+
+[node name="SideFour" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1 )
+
+[node name="SideFive" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
+
+[node name="SideSix" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
