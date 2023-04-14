@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/pixel_dice_tex.png-ff4dac14d50ee6ef1d7d6c7e518dafb8.s3tc.stex"
-path.etc="res://.import/pixel_dice_tex.png-ff4dac14d50ee6ef1d7d6c7e518dafb8.etc.stex"
+path.s3tc="res://.import/pixel_dice_tex.png-9a6f2036ea7a9e887cd336804b8cabf6.s3tc.stex"
+path.etc="res://.import/pixel_dice_tex.png-9a6f2036ea7a9e887cd336804b8cabf6.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://pixel_dice_tex.png"
-dest_files=[ "res://.import/pixel_dice_tex.png-ff4dac14d50ee6ef1d7d6c7e518dafb8.s3tc.stex", "res://.import/pixel_dice_tex.png-ff4dac14d50ee6ef1d7d6c7e518dafb8.etc.stex" ]
+source_file="res://Textures/pixel_dice_tex.png"
+dest_files=[ "res://.import/pixel_dice_tex.png-9a6f2036ea7a9e887cd336804b8cabf6.s3tc.stex", "res://.import/pixel_dice_tex.png-9a6f2036ea7a9e887cd336804b8cabf6.etc.stex" ]
 
 [params]
 

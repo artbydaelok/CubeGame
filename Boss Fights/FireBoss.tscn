@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Health System/Health.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Boss Fights/FireBoss.gd" type="Script" id=2]
+
+[node name="FireBoss" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="CSGMesh" type="CSGMesh" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="CSGMesh"]
+width = 15.0
+height = 15.0
+depth = 15.0
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="RelocateTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Health" parent="." instance=ExtResource( 1 )]
+max_amount = 100
+
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="timeout" from="RelocateTimer" to="." method="_on_RelocateTimer_timeout"]

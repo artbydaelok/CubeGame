@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DiceGameHealthBar.png-c3e2277e6638c528b51443d1b3e80feb.stex"
+path="res://.import/UI Border 1.png-2b35662ae90a91aaf5d342c2aba2d1f8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DiceGameHealthBar.png"
-dest_files=[ "res://.import/DiceGameHealthBar.png-c3e2277e6638c528b51443d1b3e80feb.stex" ]
+source_file="res://Items/UI Border 1.png"
+dest_files=[ "res://.import/UI Border 1.png-2b35662ae90a91aaf5d342c2aba2d1f8.stex" ]
 
 [params]
 

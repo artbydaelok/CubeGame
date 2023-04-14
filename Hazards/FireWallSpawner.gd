@@ -39,3 +39,7 @@ func spawn_wall():
 	var walls_children = walls_node.get_children()
 	walls_children[rng.randi_range(0, walls_children.size() - 1)].queue_free()
 	
+
+
+func _on_SelfDestruct_timeout():
+	self.queue_free()

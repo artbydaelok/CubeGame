@@ -29,6 +29,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
 [node name="Pos7" type="Position3D" parent="SpawnPoints"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+[node name="SelfDestruct" type="Timer" parent="."]
+wait_time = 25.0
+one_shot = true
 autostart = true
+
+[connection signal="timeout" from="SelfDestruct" to="." method="_on_SelfDestruct_timeout"]

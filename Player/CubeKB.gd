@@ -15,6 +15,15 @@ onready var side_four = $Pivot/MeshInstance/DiceSides/SideFour
 onready var side_five = $Pivot/MeshInstance/DiceSides/SideFive
 onready var side_six = $Pivot/MeshInstance/DiceSides/SideSix
 
+##
+## At the moment, we are calculating which side is up by comparing its Y value to 2
+## This is the Y value for any side that is currently facing up, but this method will
+## not work if the dice is shifted in the Y axis for whatever, reason.
+## Another way to implement it with the same logic would be to store a temporary
+## variable that represents the side which has the highest Y value, and if another 
+## side has a higher Y value, then set the variable to this side. There will only be
+## One side that is higher than the others, and this side is the one facing up. 
+##
 
 enum SIDES_STATE {ONE, TWO, THREE, FOUR, FIVE, SIX}
 var up_side = SIDES_STATE.TWO
