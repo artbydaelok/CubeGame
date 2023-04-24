@@ -1,25 +1,26 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/CubeKB.gd" type="Script" id=1]
 [ext_resource path="res://Textures/pixel_dice_tex.png" type="Texture" id=2]
 [ext_resource path="res://Player/dice.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://CameraGimbal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Health System/Health.tscn" type="PackedScene" id=5]
-
+[ext_resource path="res://Shotgun.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Items/TennisRacket.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpatialMaterial" id=4]
 albedo_texture = ExtResource( 2 )
 
 [sub_resource type="BoxShape" id=2]
 
-[node name="CubeKB" type="KinematicBody"]
+[node name="CubeKB" type="KinematicBody" groups=["Player"]]
 script = ExtResource( 1 )
 camera_path = NodePath("CameraGimbal")
 
 [node name="Pivot" type="Spatial" parent="."]
 
 [node name="MeshInstance" type="MeshInstance" parent="Pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 0 )
 mesh = ExtResource( 3 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 4 )
@@ -56,5 +57,16 @@ rotation_speed = 1.0
 target = NodePath("../Pivot/MeshInstance")
 
 [node name="Health" parent="." instance=ExtResource( 5 )]
+
+[node name="Weapons" type="Spatial" parent="."]
+
+[node name="Shotgun" parent="Weapons" instance=ExtResource( 6 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.76458, 0 )
+visible = false
+skeleton = NodePath("../..")
+
+[node name="TennisRacket" parent="Weapons" instance=ExtResource( 7 )]
+transform = Transform( 0.527182, 0, 0, 0, 0.527182, 0, 0, 0, 0.527182, 0, 2.52838, 0 )
+visible = false
 
 [connection signal="tween_step" from="Tween" to="." method="_on_Tween_tween_step"]

@@ -1,10 +1,15 @@
-extends Spatial
+extends KinematicBody
+
+#class_name Boss
 
 export var angle = 1
-export var distance = 50
+export var distance = 20
+onready var health = $Health
 
 var center = Vector3.ZERO
 onready var t = $Tween
+
+var voffset = 5
 
 onready var relocate_timer = $RelocateTimer
 
@@ -14,17 +19,22 @@ onready var firewall = preload("res://Hazards/FireWallSpawner.tscn")
 var level
 
 func _ready():
+	# This gets the level node 
 	level = get_parent()
-	print(level)
 	rng.randomize()
+	rotate_to(rng.randi_range(-4, 4) * 90, distance, 2)
 
 func _process(delta):
 	# Set position/translation
 	# These values get updated in other functions
-	var target_pos = center + Vector3(cos(angle), 0, sin(angle)) * distance
+	var target_pos = center + Vector3(cos(angle), 0, sin(angle)) * distance + Vector3.UP * voffset
 	self.global_translation = target_pos
 	look_at(Vector3.ZERO, Vector3.UP)
 	
+	
+func take_damage(damage):
+	print("Taking " + str(damage) + " damage")
+	health.set_current(health.current - damage)
 	
 func rotate_to(new_angle, new_distance, speed):
 	t.interpolate_property(self, "angle", angle, deg2rad(new_angle), speed, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
@@ -48,7 +58,7 @@ func _on_RelocateTimer_timeout():
 	
 	
 	# Rotates the boss to a random location from -360 to 360 degrees. 
-	rotate_to(rng.randi_range(-4, 4) * 90, 50, 2)
+	rotate_to(rng.randi_range(-4, 4) * 90, distance, 2)
 
 
 

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Items/Item.gd" type="Script" id=1]
+[ext_resource path="res://Items/axe.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "ThrowingAxe"
+description = "Deals the most damage when throwing from the middle of the arena."
+texture = ExtResource( 2 )
+cooldown = 1.5
+on_cooldown = false

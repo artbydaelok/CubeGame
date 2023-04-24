@@ -7,8 +7,13 @@ export var zoom_speed = 0.09
 
 export (NodePath) var target
 
+var r_joy_active = false
+
 var mouse_control = true
 var mouse_sensitivity = 0.005
+
+var cam_speed = 5
+
 var zoom = 1.5
 export (bool) var invert_y = false
 export (bool) var invert_x = false
@@ -18,11 +23,20 @@ func _process(delta):
 		global_transform.origin = get_node(target).global_transform.origin
 	if !mouse_control:
 		get_input_keyboard(delta)
+	
+	# If the right joystick is being used
+	if r_joy_active:
+		rotate_object_local(Vector3.UP, -1 * (Input.get_action_strength("move_camera_right") - Input.get_action_strength("move_camera_left")) * delta * cam_speed)
+		$InnerGimbal.rotate_object_local(Vector3.RIGHT, (Input.get_action_strength("move_camera_up") - Input.get_action_strength("move_camera_down")) * delta * cam_speed)
 	$InnerGimbal.rotation.x = clamp($InnerGimbal.rotation.x, -1.4, 0.1)
 	scale = lerp(scale, Vector3.ONE * zoom, zoom_speed)
 	
-func _unhandled_input(event):
-	if mouse_control == true and event is InputEventMouseMotion:
+func _input(event):
+	r_joy_active = abs(Input.get_action_strength("move_camera_right") - Input.get_action_strength("move_camera_left")) >  0.1 or abs(Input.get_action_strength("move_camera_up") - Input.get_action_strength("move_camera_down")) > 0.1
+	if event is InputEventJoypadMotion:
+		# CODE FOR GAMEPAD
+		pass
+	elif r_joy_active == false and event is InputEventMouseMotion:
 		if event.relative.x != 0:
 			var dir = 1 if invert_x else -1
 			rotate_object_local(Vector3.UP, dir * event.relative.x * mouse_sensitivity)

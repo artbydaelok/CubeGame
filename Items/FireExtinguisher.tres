@@ -9,4 +9,7 @@ load_path = "res://.import/fire_extinguisher.png-5a1bb752d252a2c50aaea0f5a76eb65
 [resource]
 script = ExtResource( 1 )
 name = "Fire Extinguisher"
+description = "Used to put out fires."
 texture = SubResource( 1 )
+cooldown = 0.0
+on_cooldown = false

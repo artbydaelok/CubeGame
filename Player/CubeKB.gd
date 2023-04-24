@@ -1,6 +1,26 @@
 extends KinematicBody
 class_name Player
 
+signal item_used(index, cooldown_duration)
+
+var inventory = preload("res://Inventory.tres")
+onready var game = get_node("../../..")
+
+const spear = preload("res://Spear.tscn")
+const bullet = preload("res://Bullet.tscn")
+const tennis_ball = preload("res://Items/TennisBall.tscn")
+const boomerang = preload("res://Items/Boomerang.tscn")
+
+onready var shotgun = $Weapons/Shotgun
+onready var tennis_racket = $Weapons/TennisRacket
+
+onready var weapons
+
+var boss
+
+signal shoot
+
+var actve_item
 
 export var speed = 6.0
 
@@ -34,9 +54,14 @@ onready var camera = get_node(camera_path)
 onready var sides = [side_one, side_two, side_three, side_four, side_five, side_six]
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
+	inventory.connect("active_changed", self, "set_active_weapon")
+	weapons = $Weapons.get_children()
+	detect_side_up()
+	
 func _physics_process(_delta):
+	# Print Distance from boss to test weapons
+	#print(distance_from_boss())
+	
 	var forward = Vector3.FORWARD
 	if camera:
 		forward = Vector3.ZERO
@@ -56,20 +81,43 @@ func _physics_process(_delta):
 	
 	# Use Items
 	if Input.is_action_just_pressed("use_item"):
+		var _item
 		match up_side:
 			SIDES_STATE.ONE:
-				print("One")
+				_item = inventory.get_item(0)
 			SIDES_STATE.TWO:
-				print("Two")
+				_item = inventory.get_item(1)
 			SIDES_STATE.THREE:
-				print("Three")
+				_item = inventory.get_item(2)
 			SIDES_STATE.FOUR:
-				print("Four")
+				_item = inventory.get_item(3)
 			SIDES_STATE.FIVE:
-				print("Five")
+				_item = inventory.get_item(4)
 			SIDES_STATE.SIX:
-				print("Six")
-				
+				_item = inventory.get_item(5)
+		use_item(_item)
+
+func clear_weapon_mesh():
+	for weapon in weapons:
+		weapon.visible = false
+
+func set_active_weapon(index):
+	clear_weapon_mesh()
+	match inventory.get_active_item().name:
+		#### REMEMBER NOT ALL WEAPONS HAVE TO USE THE COOLDOWN VARIABLE ####
+		"Shotgun":
+			shotgun.visible = true
+		"Molotov":
+			pass
+		"Spear":
+			pass
+		"Pepper Spray":
+			pass
+		"Boomerang":
+			pass
+		"Tennis":
+			tennis_racket.visible = true
+		
 func detect_side_up():
 	for s in sides:
 		#print(s.name + " " + str(sides[0].global_translation))
@@ -78,17 +126,87 @@ func detect_side_up():
 			match s:
 				side_one:
 					up_side = SIDES_STATE.ONE
+					inventory.set_active_item(0)
 				side_two:
 					up_side = SIDES_STATE.TWO
+					inventory.set_active_item(1)
 				side_three:
 					up_side = SIDES_STATE.THREE
+					inventory.set_active_item(2)
 				side_four:
 					up_side = SIDES_STATE.FOUR
+					inventory.set_active_item(3)
 				side_five:
 					up_side = SIDES_STATE.FIVE
+					inventory.set_active_item(4)
 				side_six:
 					up_side = SIDES_STATE.SIX
+					inventory.set_active_item(5)
+	
+func distance_from_boss():
+	return self.translation.distance_to(boss.translation)
 		
+func use_item(item):
+	#print(distance_from_boss())
+	# If the item we are trying to use isn't on cooldown
+	if item.on_cooldown == false:
+		# Set the cooldown to true
+		item.on_cooldown = true	
+		# And choose the behavior according to the item
+		match item.name:
+		#### REMEMBER NOT ALL WEAPONS HAVE TO USE THE COOLDOWN VARIABLE ####
+			"Shotgun":
+				for b in range (6):
+					var _b = bullet.instance()
+					_b.player = self
+					_b.translation = shotgun.find_node("MuzzleFlashStart").global_translation
+					get_parent().add_child(_b)
+					_b.shoot_at(boss.translation, 12)
+				
+			"Molotov":
+				pass
+			"Spear":
+				var _spear = spear.instance()
+				# Spawns the spear projectile
+				_spear.translation = self.translation + 2 * Vector3.UP
+				_spear.player = self
+				get_parent().add_child(_spear)
+				
+				_spear.shoot_at(boss.translation, 0)
+				# Include a tween for long range that moves a collider towards the boss current location, 
+				# this can be an instanced object that damages the boss when it touches them. 
+			"Pepper Spray":
+				# Set a timer that runs down the spray amount, when it reaches 0, reload
+				if distance_from_boss() < 14:
+					boss.take_damage(4)
+				# Set a short timer that applies this damage until it runs out 
+			"Boomerang":
+				# Throw the boomerang in an arc, it then comes back to the player after it hits the boss
+				var _b = boomerang.instance()
+				_b.translation = self.translation + 2 * Vector3.UP
+				_b.player = self
+				get_parent().add_child(_b)
+				_b.throw_boomerang(boss)
+			"Tennis":
+				# Spawn tennis ball projectile
+				var _tb = tennis_ball.instance()
+				_tb.translation = self.translation + 2*Vector3.UP
+				_tb.player = self
+				get_parent().add_child(_tb)
+				
+				# Shoot it at the boss.
+				_tb.shoot_at(boss.translation, 0)
+				
+				# The ball bounces off the boss and falls on a random tile
+				# which gets a tennis ball icon hovering above it to let 
+				# the player know the ball will fall there
+		inventory.use_item()
+		# Set the cooldown timer here
+		# We could tie this cooldown number to a radial progress bar and a tween that completes it
+		yield(get_tree().create_timer(item.cooldown), "timeout")
+		item.on_cooldown = false
+
+
 # Movement
 func roll(dir):
 	# Do nothing if we're currently rolling.

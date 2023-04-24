@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Boomerang.gd" type="Script" id=2]
+[ext_resource path="res://Items/boomerang.obj" type="ArrayMesh" id=3]
+
+[node name="Boomerang" instance=ExtResource( 1 )]
+linear_damp = 0.25
+script = ExtResource( 2 )
+damage = 3
+texture = null
+
+[node name="MeshInstance" parent="." index="3"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+mesh = ExtResource( 3 )

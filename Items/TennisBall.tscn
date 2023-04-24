@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/low_poly_tennis_ball.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Items/pixel_art_tennis_tex.png" type="Texture" id=3]
+[ext_resource path="res://Items/TennisBall.gd" type="Script" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 3 )
+
+[node name="TennisBall" instance=ExtResource( 1 )]
+gravity_scale = 1.0
+script = ExtResource( 4 )
+speed = 35
+damage = 3
+texture = null
+self_destroy_time = 50.0
+
+[node name="SelfDestroyTimer" parent="." index="2"]
+wait_time = 5.0
+autostart = false
+
+[node name="MeshInstance" parent="." index="3"]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 1 )
+
+[connection signal="tween_all_completed" from="Arc" to="." method="_on_Arc_tween_all_completed"]
+[connection signal="tween_completed" from="Arc" to="." method="_on_Arc_tween_completed"]

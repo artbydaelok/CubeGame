@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+gravity = Vector3( 0, 0, 0 )
+angle = 360.0
+angle_random = 1.0
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="MuzzleFlash" type="Spatial"]
+
+[node name="Particles" type="Particles" parent="."]
+emitting = false
+amount = 6
+lifetime = 0.07
+one_shot = true
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 2 )
