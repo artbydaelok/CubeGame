@@ -35,5 +35,9 @@ autostart = true
 
 [node name="Arc" type="Tween" parent="."]
 
+[node name="HomingStart" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="timeout" from="SelfDestroyTimer" to="." method="_on_SelfDestroyTimer_timeout"]

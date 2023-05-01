@@ -14,6 +14,8 @@ onready var arc = $Arc
 var time_elapsed = 0
 var total_time = 3
 
+var acceleration = 0
+
 ## Lob and Shoot Variables
 var current_pos
 var current_y
@@ -55,7 +57,7 @@ func _process(delta):
 			last_position = translation
 			translation = Vector3(current_pos.x, current_y, current_pos.z)
 		PROJECTILE_STATE.HOMING:
-			home_to_target(homing_target, 2500 * delta)
+			home_to_target(homing_target, 100 * delta)
 		PROJECTILE_STATE.THROWN:
 			pass
 		
@@ -87,7 +89,9 @@ func return_to_player():
 	pass
 
 func home_to_target(target, strength):
-	add_central_force(self.translation.direction_to(target.translation + Vector3.UP * 2) * strength)
+	acceleration += 0.1
+	linear_velocity = self.translation.direction_to(target.translation + Vector3.UP * 2) * strength * acceleration
+	#add_central_force(self.translation.direction_to(target.translation + Vector3.UP * 2) * strength)
 
 func _on_Area_body_entered(body):
 	if body.is_in_group("Enemy"):

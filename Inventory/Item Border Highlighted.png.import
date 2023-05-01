@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3dCrosshair.png-f783fbd6da79ca965c2d700dcd973d24.stex"
+path="res://.import/Item Border Highlighted.png-6254aa9ece221d800b1a4a9fca8f9e5a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/3dCrosshair.png"
-dest_files=[ "res://.import/3dCrosshair.png-f783fbd6da79ca965c2d700dcd973d24.stex" ]
+source_file="res://Inventory/Item Border Highlighted.png"
+dest_files=[ "res://.import/Item Border Highlighted.png-6254aa9ece221d800b1a4a9fca8f9e5a.stex" ]
 
 [params]
 

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Shotgun/shotgunv2.obj" type="ArrayMesh" id=2]
+
+[node name="Shotgun" instance=ExtResource( 1 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+mesh = ExtResource( 2 )
+
+[node name="Spatial" type="Spatial" parent="." index="0"]
+
+[node name="MuzzleFlashStart" type="Position3D" parent="Spatial" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0297248, 0.963192, -6.47754 )

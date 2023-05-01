@@ -6,10 +6,10 @@ signal item_used(index, cooldown_duration)
 var inventory = preload("res://Inventory.tres")
 onready var game = get_node("../../..")
 
-const spear = preload("res://Spear.tscn")
-const bullet = preload("res://Bullet.tscn")
-const tennis_ball = preload("res://Items/TennisBall.tscn")
-const boomerang = preload("res://Items/Boomerang.tscn")
+const spear = preload("res://Items/Spear/Spear.tscn")
+const bullet = preload("res://Items/Bullet.tscn")
+const tennis_ball = preload("res://Items/Tennis/TennisBall.tscn")
+const boomerang = preload("res://Items/Boomerang/Boomerang.tscn")
 
 onready var shotgun = $Weapons/Shotgun
 onready var tennis_racket = $Weapons/TennisRacket

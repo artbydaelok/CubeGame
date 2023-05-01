@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3dCrosshair.png-f783fbd6da79ca965c2d700dcd973d24.stex"
+path="res://.import/Tennis.png-672fe591bbad51760612a5f4f211afe2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/3dCrosshair.png"
-dest_files=[ "res://.import/3dCrosshair.png-f783fbd6da79ca965c2d700dcd973d24.stex" ]
+source_file="res://Items/Tennis/Tennis.png"
+dest_files=[ "res://.import/Tennis.png-672fe591bbad51760612a5f4f211afe2.stex" ]
 
 [params]
 

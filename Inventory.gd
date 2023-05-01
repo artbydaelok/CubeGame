@@ -9,6 +9,7 @@ var active_item_index = 1
 # Declare the signal for when items change
 signal items_changed(indexes)
 signal active_changed(index)
+signal cooldown_reset()
 signal item_used
 
 # Set up the inventory array of resources
@@ -35,6 +36,9 @@ func set_item(item_index, item):
 	emit_signal("items_changed", [item_index])
 	return previousItem
 	
+func reset_item_cooldown(item_index):
+	get_item(item_index).on_cooldown = false
+	emit_signal("cooldown_reset")
 	
 func swap_items(item_index, target_item_index):
 	# We the get a ref to the first item we want to swap out in the inventory
