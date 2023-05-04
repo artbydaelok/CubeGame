@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/boomerang.png-262a45189e9bbcf4dde8cd725fd4b454.s3tc.stex"
-path.etc="res://.import/boomerang.png-262a45189e9bbcf4dde8cd725fd4b454.etc.stex"
+path.s3tc="res://.import/LongFire_117x59.png-982efc0f27f8d0384de68215280c6f5b.s3tc.stex"
+path.etc="res://.import/LongFire_117x59.png-982efc0f27f8d0384de68215280c6f5b.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Items/Boomerang/boomerang.png"
-dest_files=[ "res://.import/boomerang.png-262a45189e9bbcf4dde8cd725fd4b454.s3tc.stex", "res://.import/boomerang.png-262a45189e9bbcf4dde8cd725fd4b454.etc.stex" ]
+source_file="res://LongFire_117x59.png"
+dest_files=[ "res://.import/LongFire_117x59.png-982efc0f27f8d0384de68215280c6f5b.s3tc.stex", "res://.import/LongFire_117x59.png-982efc0f27f8d0384de68215280c6f5b.etc.stex" ]
 
 [params]
 

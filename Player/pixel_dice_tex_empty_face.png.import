@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/boomerang.png-262a45189e9bbcf4dde8cd725fd4b454.s3tc.stex"
-path.etc="res://.import/boomerang.png-262a45189e9bbcf4dde8cd725fd4b454.etc.stex"
+path.s3tc="res://.import/pixel_dice_tex_empty_face.png-9df108e6f97b4a84f5b858002051e562.s3tc.stex"
+path.etc="res://.import/pixel_dice_tex_empty_face.png-9df108e6f97b4a84f5b858002051e562.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Items/Boomerang/boomerang.png"
-dest_files=[ "res://.import/boomerang.png-262a45189e9bbcf4dde8cd725fd4b454.s3tc.stex", "res://.import/boomerang.png-262a45189e9bbcf4dde8cd725fd4b454.etc.stex" ]
+source_file="res://Player/pixel_dice_tex_empty_face.png"
+dest_files=[ "res://.import/pixel_dice_tex_empty_face.png-9df108e6f97b4a84f5b858002051e562.s3tc.stex", "res://.import/pixel_dice_tex_empty_face.png-9df108e6f97b4a84f5b858002051e562.etc.stex" ]
 
 [params]
 

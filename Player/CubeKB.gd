@@ -35,6 +35,10 @@ onready var side_four = $Pivot/MeshInstance/DiceSides/SideFour
 onready var side_five = $Pivot/MeshInstance/DiceSides/SideFive
 onready var side_six = $Pivot/MeshInstance/DiceSides/SideSix
 
+const numbers_material = preload("res://Player/PlayerNumberFacesMaterial.tres")
+
+export var using_numbers = false
+
 ##
 ## At the moment, we are calculating which side is up by comparing its Y value to 2
 ## This is the Y value for any side that is currently facing up, but this method will
@@ -55,6 +59,10 @@ onready var sides = [side_one, side_two, side_three, side_four, side_five, side_
 
 func _ready():
 	inventory.connect("active_changed", self, "set_active_weapon")
+	
+	if using_numbers:
+		$Pivot/MeshInstance.set_surface_material(0, numbers_material)
+	
 	weapons = $Weapons.get_children()
 	detect_side_up()
 	

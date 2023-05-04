@@ -1,15 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/CubeKB.gd" type="Script" id=1]
-[ext_resource path="res://Textures/pixel_dice_tex.png" type="Texture" id=2]
+[ext_resource path="res://Player/PlayerEmptyFacesMaterial.tres" type="Material" id=2]
 [ext_resource path="res://Player/dice.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://CameraGimbal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Health System/Health.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Items/Shotgun/Shotgun.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Items/Tennis/TennisRacket.tscn" type="PackedScene" id=7]
-
-[sub_resource type="SpatialMaterial" id=4]
-albedo_texture = ExtResource( 2 )
+[ext_resource path="res://Player/DiceSide.gd" type="Script" id=9]
 
 [sub_resource type="BoxShape" id=2]
 
@@ -23,27 +21,57 @@ camera_path = NodePath("CameraGimbal")
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 0 )
 mesh = ExtResource( 3 )
 skeleton = NodePath("../..")
-material/0 = SubResource( 4 )
+material/0 = ExtResource( 2 )
 
 [node name="DiceSides" type="Spatial" parent="Pivot/MeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
 [node name="SideOne" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0 )
+script = ExtResource( 9 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Pivot/MeshInstance/DiceSides/SideOne"]
+transform = Transform( -4.37114e-08, 4.37114e-08, -1, 4.37114e-08, 1, 4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0, 0, 0 )
+pixel_size = 0.04
 
 [node name="SideTwo" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+script = ExtResource( 9 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Pivot/MeshInstance/DiceSides/SideTwo"]
+transform = Transform( 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0 )
+pixel_size = 0.04
 
 [node name="SideThree" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1 )
+script = ExtResource( 9 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Pivot/MeshInstance/DiceSides/SideThree"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, -1.06581e-14, 0 )
+pixel_size = 0.04
 
 [node name="SideFour" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1 )
+script = ExtResource( 9 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Pivot/MeshInstance/DiceSides/SideFour"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, -1.06581e-14, 0 )
+pixel_size = 0.04
 
 [node name="SideFive" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
+script = ExtResource( 9 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Pivot/MeshInstance/DiceSides/SideFive"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.19209e-07, 0, 0 )
+pixel_size = 0.04
 
 [node name="SideSix" type="Position3D" parent="Pivot/MeshInstance/DiceSides"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0 )
+script = ExtResource( 9 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Pivot/MeshInstance/DiceSides/SideSix"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+pixel_size = 0.04
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
