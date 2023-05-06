@@ -4,7 +4,7 @@
 [ext_resource path="res://GameOver.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 127
+size = 80
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -26,26 +26,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 175.0
-margin_top = 204.0
-margin_right = 624.0
-margin_bottom = 396.0
+margin_left = 182.0
+margin_top = 145.0
+margin_right = 618.0
+margin_bottom = 455.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 449.0
-margin_bottom = 128.0
+margin_right = 436.0
+margin_bottom = 246.0
 custom_fonts/font = SubResource( 1 )
-text = "GAME OVER"
+text = "Jeez, 
+you really just
+murdered him"
+align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 132.0
-margin_right = 449.0
-margin_bottom = 192.0
+margin_top = 250.0
+margin_right = 436.0
+margin_bottom = 310.0
 alignment = 1
 
 [node name="TryAgainButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 144.0
-margin_right = 304.0
+margin_left = 138.0
+margin_right = 298.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 160, 60 )
 icon_align = 1
@@ -60,7 +63,7 @@ margin_top = -20.0
 margin_right = 72.5
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 2 )
-text = "Try Again?"
+text = "Play Again"
 align = 1
 valign = 1
 

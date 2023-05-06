@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/tall_fire_141x483.png-6fed9fb3b2e58242d70b5a43445c5bb9.s3tc.stex"
-path.etc="res://.import/tall_fire_141x483.png-6fed9fb3b2e58242d70b5a43445c5bb9.etc.stex"
+path.s3tc="res://.import/FireExtinguisherTexAtlas.png-2638c56b69e75bb793bd005eeea8e951.s3tc.stex"
+path.etc="res://.import/FireExtinguisherTexAtlas.png-2638c56b69e75bb793bd005eeea8e951.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Hazards/tall_fire_141x483.png"
-dest_files=[ "res://.import/tall_fire_141x483.png-6fed9fb3b2e58242d70b5a43445c5bb9.s3tc.stex", "res://.import/tall_fire_141x483.png-6fed9fb3b2e58242d70b5a43445c5bb9.etc.stex" ]
+source_file="res://Items/FireExtinguisher/FireExtinguisherTexAtlas.png"
+dest_files=[ "res://.import/FireExtinguisherTexAtlas.png-2638c56b69e75bb793bd005eeea8e951.s3tc.stex", "res://.import/FireExtinguisherTexAtlas.png-2638c56b69e75bb793bd005eeea8e951.etc.stex" ]
 
 [params]
 

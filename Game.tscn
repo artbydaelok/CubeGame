@@ -442,10 +442,10 @@ texture = ExtResource( 8 )
 [node name="BossHealthBar" parent="Interface" instance=ExtResource( 2 )]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -402.0
-margin_top = 37.0
-margin_right = 398.0
-margin_bottom = 62.0
+margin_left = -339.0
+margin_top = 38.0
+margin_right = 378.0
+margin_bottom = 60.0
 mouse_filter = 2
 texture = ExtResource( 7 )
 

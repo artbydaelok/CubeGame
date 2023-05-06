@@ -10,9 +10,11 @@ const spear = preload("res://Items/Spear/Spear.tscn")
 const bullet = preload("res://Items/Bullet.tscn")
 const tennis_ball = preload("res://Items/Tennis/TennisBall.tscn")
 const boomerang = preload("res://Items/Boomerang/Boomerang.tscn")
+const water_balloon = preload("res://Items/WaterBalloon/WaterBalloon.tscn")
 
 onready var shotgun = $Weapons/Shotgun
 onready var tennis_racket = $Weapons/TennisRacket
+onready var fire_ext = $Weapons/FireExtinguisher
 
 onready var weapons
 
@@ -58,6 +60,7 @@ onready var camera = get_node(camera_path)
 onready var sides = [side_one, side_two, side_three, side_four, side_five, side_six]
 
 func _ready():
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	inventory.connect("active_changed", self, "set_active_weapon")
 	
 	if using_numbers:
@@ -108,6 +111,7 @@ func _physics_process(_delta):
 func clear_weapon_mesh():
 	for weapon in weapons:
 		weapon.visible = false
+		weapon.set_active(false)
 
 func set_active_weapon(index):
 	clear_weapon_mesh()
@@ -125,6 +129,9 @@ func set_active_weapon(index):
 			pass
 		"Tennis":
 			tennis_racket.visible = true
+		"Fire Extinguisher":
+			fire_ext.visible = true
+			fire_ext.set_active(true)
 		
 func detect_side_up():
 	for s in sides:
@@ -204,10 +211,30 @@ func use_item(item):
 				
 				# Shoot it at the boss.
 				_tb.shoot_at(boss.translation, 0)
-				
+			
 				# The ball bounces off the boss and falls on a random tile
 				# which gets a tennis ball icon hovering above it to let 
 				# the player know the ball will fall there
+			"Fire Extinguisher":
+				# Puts out any fire walls or fire tiles within one tile of the player. 
+				fire_ext.spin()
+			"Water Balloon":
+				# Weakens enemy attacks and bosses. Puts out fire tiles if it lands on one. 
+				var _wb = water_balloon.instance()
+				_wb.translation = self.translation + 2*Vector3.UP
+				_wb.player = self
+				get_parent().add_child(_wb)
+				
+				_wb.lob_at(boss, 5, 1)
+			"Tiny Rocket":
+				# Spawns a toy rocket that shoots upwards and damages anything above the player
+				pass
+			"Ray Gun":
+				# Shoot a beam laser that the longer you hold, the more damage it does
+				pass
+			"Shooting Star":
+				# Summons a star above you with a gun that shoots the enemies
+				pass
 		inventory.use_item()
 		# Set the cooldown timer here
 		# We could tie this cooldown number to a radial progress bar and a tween that completes it

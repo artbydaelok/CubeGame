@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/CubeKB.gd" type="Script" id=1]
 [ext_resource path="res://Player/PlayerEmptyFacesMaterial.tres" type="Material" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Health System/Health.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Items/Shotgun/Shotgun.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Items/Tennis/TennisRacket.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Items/FireExtinguisher/FireExtinguisher.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Player/DiceSide.gd" type="Script" id=9]
 
 [sub_resource type="BoxShape" id=2]
@@ -73,6 +74,11 @@ script = ExtResource( 9 )
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 pixel_size = 0.04
 
+[node name="SpotLight" type="SpotLight" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, 0 )
+spot_range = 7.2
+spot_angle = 28.484
+
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 2 )
@@ -95,6 +101,10 @@ skeleton = NodePath("../..")
 
 [node name="TennisRacket" parent="Weapons" instance=ExtResource( 7 )]
 transform = Transform( 0.527182, 0, 0, 0, 0.527182, 0, 0, 0, 0.527182, 0, 2.52838, 0 )
+visible = false
+
+[node name="FireExtinguisher" parent="Weapons" instance=ExtResource( 8 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 3.1, 0 )
 visible = false
 
 [connection signal="tween_step" from="Tween" to="." method="_on_Tween_tween_step"]

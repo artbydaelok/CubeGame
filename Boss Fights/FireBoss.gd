@@ -66,7 +66,7 @@ func _on_Tween_tween_all_completed():
 	print("Spawning firewall")
 	
 	# Sets a new wait time for the timer
-	relocate_timer.wait_time = rng.randi_range(3, 10)
+	relocate_timer.wait_time = rng.randi_range(3, 5)
 	relocate_timer.start()
 	
 	spawn_firewall() 

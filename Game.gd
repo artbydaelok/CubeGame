@@ -25,7 +25,7 @@ func _ready():
 
 
 func player_win():
-	pass
+	get_tree().change_scene("res://WinScreen.tscn")
 
 func game_over():
 	get_tree().change_scene("res://GameOver.tscn")

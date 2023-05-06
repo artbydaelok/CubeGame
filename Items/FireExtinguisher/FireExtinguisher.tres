@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Items/Item.gd" type="Script" id=1]
+[ext_resource path="res://Items/FireExtinguisher/fire_extinguisher.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Fire Extinguisher"
+description = "Used to put out fires around you."
+texture = ExtResource( 2 )
+cooldown = 5.0
+on_cooldown = false
