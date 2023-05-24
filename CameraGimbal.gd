@@ -18,6 +18,9 @@ var zoom = 1.5
 export (bool) var invert_y = false
 export (bool) var invert_x = false
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _process(delta):
 	if target:
 		global_transform.origin = get_node(target).global_transform.origin

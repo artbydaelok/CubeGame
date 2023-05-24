@@ -12,7 +12,7 @@ func _on_Area_body_entered(body):
 			destroy_timer.stop()
 			destroy_timer.start(-1)
 		has_bounced = true
-		lob_at(player, 5, 3)
+		lob_at(player, 4, 1)
 		body.take_damage(damage)
 		
 	elif body.is_in_group("Player") and has_bounced:

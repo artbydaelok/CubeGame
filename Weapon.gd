@@ -16,4 +16,5 @@ func set_active(new_active):
 	active = new_active
 	
 func aim_at_boss():
-	look_at(player.boss.translation, Vector3.UP)
+	if player.boss:
+		look_at(player.boss.translation, Vector3.UP)

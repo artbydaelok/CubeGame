@@ -6,7 +6,7 @@
 [node name="InventoryContainer" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -17,7 +17,7 @@ mouse_filter = 2
 [node name="InventoryDisplay" parent="CenterContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 352.0
+margin_left = 240.0
 margin_top = 275.0
-margin_right = 672.0
+margin_right = 560.0
 margin_bottom = 325.0

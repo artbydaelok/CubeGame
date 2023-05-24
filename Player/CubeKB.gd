@@ -4,7 +4,7 @@ class_name Player
 signal item_used(index, cooldown_duration)
 
 var inventory = preload("res://Inventory.tres")
-onready var game = get_node("../../..")
+#onready var game = get_node("../../..")
 
 const spear = preload("res://Items/Spear/Spear.tscn")
 const bullet = preload("res://Items/Bullet.tscn")
@@ -106,7 +106,8 @@ func _physics_process(_delta):
 				_item = inventory.get_item(4)
 			SIDES_STATE.SIX:
 				_item = inventory.get_item(5)
-		use_item(_item)
+		if inventory.get_active_item():
+			use_item(_item)
 
 func clear_weapon_mesh():
 	for weapon in weapons:
@@ -115,23 +116,24 @@ func clear_weapon_mesh():
 
 func set_active_weapon(index):
 	clear_weapon_mesh()
-	match inventory.get_active_item().name:
-		#### REMEMBER NOT ALL WEAPONS HAVE TO USE THE COOLDOWN VARIABLE ####
-		"Shotgun":
-			shotgun.visible = true
-		"Molotov":
-			pass
-		"Spear":
-			pass
-		"Pepper Spray":
-			pass
-		"Boomerang":
-			pass
-		"Tennis":
-			tennis_racket.visible = true
-		"Fire Extinguisher":
-			fire_ext.visible = true
-			fire_ext.set_active(true)
+	if inventory.get_active_item():
+		match inventory.get_active_item().name:
+			#### REMEMBER NOT ALL WEAPONS HAVE TO USE THE COOLDOWN VARIABLE ####
+			"Shotgun":
+				shotgun.visible = true
+			"Molotov":
+				pass
+			"Spear":
+				pass
+			"Pepper Spray":
+				pass
+			"Boomerang":
+				pass
+			"Tennis":
+				tennis_racket.visible = true
+			"Fire Extinguisher":
+				fire_ext.visible = true
+				fire_ext.set_active(true)
 		
 func detect_side_up():
 	for s in sides:

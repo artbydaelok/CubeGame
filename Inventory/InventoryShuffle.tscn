@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Inventory/InventoryContainer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Health System/AmericanCaptain-MdEY.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Inventory/InventoryShuffle.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 2 )
+
+[node name="InventoryShuffle" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="BG" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 66.0
+margin_top = 177.0
+margin_right = 733.0
+margin_bottom = 422.0
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_right = 667.0
+margin_bottom = 20.0
+text = "Done"
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 667.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 78.0
+margin_right = 667.0
+margin_bottom = 241.0
+custom_fonts/font = SubResource( 1 )
+text = "DRAG AND DROP
+TO REARRANGE INVENTORY"
+align = 1
+
+[node name="InventoryContainer" parent="CenterContainer/VBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 245.0
+margin_right = 667.0
+margin_bottom = 245.0
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]

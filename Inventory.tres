@@ -1,13 +1,9 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://Inventory.gd" type="Script" id=1]
-[ext_resource path="res://Items/Boomerang/boomerang.tres" type="Resource" id=2]
-[ext_resource path="res://Items/Shotgun/shotgun.tres" type="Resource" id=3]
-[ext_resource path="res://Items/Spear/spear.tres" type="Resource" id=4]
-[ext_resource path="res://Items/Tennis/tennis.tres" type="Resource" id=5]
-[ext_resource path="res://Items/WaterBalloon/water_balloon.tres" type="Resource" id=6]
-[ext_resource path="res://Items/FireExtinguisher/FireExtinguisher.tres" type="Resource" id=7]
+[ext_resource path="res://Items/Shotgun/shotgun.tres" type="Resource" id=2]
+[ext_resource path="res://Items/Spear/spear.tres" type="Resource" id=3]
 
 [resource]
 script = ExtResource( 1 )
-items = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ) ]
+items = [ ExtResource( 2 ), ExtResource( 3 ), null, null, null, null ]
