@@ -3,6 +3,8 @@ class_name Player
 
 signal item_used(index, cooldown_duration)
 
+signal roll
+
 var inventory = preload("res://Inventory.tres")
 #onready var game = get_node("../../..")
 
@@ -19,6 +21,9 @@ onready var fire_ext = $Weapons/FireExtinguisher
 onready var weapons
 
 var boss
+
+var possible_targets = []
+var target
 
 signal shoot
 
@@ -62,7 +67,8 @@ onready var sides = [side_one, side_two, side_three, side_four, side_five, side_
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	inventory.connect("active_changed", self, "set_active_weapon")
-	
+	if boss:
+		target = boss
 	if using_numbers:
 		$Pivot/MeshInstance.set_surface_material(0, numbers_material)
 	
@@ -160,42 +166,44 @@ func detect_side_up():
 					up_side = SIDES_STATE.SIX
 					inventory.set_active_item(5)
 	
-func distance_from_boss():
-	return self.translation.distance_to(boss.translation)
+func distance_from_target():
+	return self.translation.distance_to(target.translation)
 		
 func use_item(item):
 	#print(distance_from_boss())
 	# If the item we are trying to use isn't on cooldown
 	if item.on_cooldown == false:
 		# Set the cooldown to true
-		item.on_cooldown = true	
+		item.on_cooldown = true
 		# And choose the behavior according to the item
 		match item.name:
 		#### REMEMBER NOT ALL WEAPONS HAVE TO USE THE COOLDOWN VARIABLE ####
 			"Shotgun":
-				for b in range (6):
-					var _b = bullet.instance()
-					_b.player = self
-					_b.translation = shotgun.find_node("MuzzleFlashStart").global_translation
-					get_parent().add_child(_b)
-					_b.shoot_at(boss.translation, 12)
+				if target:
+					for b in range (6):
+						var _b = bullet.instance()
+						_b.player = self
+						_b.translation = shotgun.find_node("MuzzleFlashStart").global_translation
+						get_parent().add_child(_b)
+						_b.shoot_at(target.translation, 12)
 				
 			"Molotov":
 				pass
 			"Spear":
-				var _spear = spear.instance()
-				# Spawns the spear projectile
-				_spear.translation = self.translation + 2 * Vector3.UP
-				_spear.player = self
-				get_parent().add_child(_spear)
-				
-				_spear.shoot_at(boss.translation, 0)
+				if target:
+					var _spear = spear.instance()
+					# Spawns the spear projectile
+					_spear.translation = self.translation + 2 * Vector3.UP
+					_spear.player = self
+					get_parent().add_child(_spear)
+					
+					_spear.shoot_at(target.translation, 0)
 				# Include a tween for long range that moves a collider towards the boss current location, 
 				# this can be an instanced object that damages the boss when it touches them. 
 			"Pepper Spray":
 				# Set a timer that runs down the spray amount, when it reaches 0, reload
-				if distance_from_boss() < 14:
-					boss.take_damage(4)
+				if distance_from_target() < 14:
+					target.take_damage(4)
 				# Set a short timer that applies this damage until it runs out 
 			"Boomerang":
 				# Throw the boomerang in an arc, it then comes back to the player after it hits the boss
@@ -258,6 +266,15 @@ func roll(dir):
 	if collision:
 		return
 	
+	
+	# Emit signal when roll begins
+	emit_signal("roll")
+	
+	# Reset Shotgun Cooldown when rolling
+	if inventory.get_active_item():
+		if inventory.get_active_item().name == "Shotgun":
+			inventory.reset_item_cooldown(inventory.get_active_item_index())
+	
 	## Step 1: Offset the pivot
 	pivot.translate(dir)
 	mesh.global_translate(-dir)
@@ -281,3 +298,12 @@ func roll(dir):
 
 func _on_Tween_tween_step(object, key, elapsed, value):
 	pivot.transform = pivot.transform.orthonormalized()
+
+
+func _on_EnemyDetectionRadius_body_entered(body):
+	if body.is_in_group("enemy"):
+		if possible_targets.size() == 0:
+			target = body
+			print("Adding Target")
+		possible_targets.append(body)
+		print(target)

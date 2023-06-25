@@ -15,8 +15,8 @@ func set_is_paused(value):
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _on_ResumeButton_pressed():
-	self.is_paused = false
-
-func _on_QuitButton_pressed():
-	get_tree().change_scene("res://StartMenu.tscn")
+#func _on_ResumeButton_pressed():
+#	self.is_paused = false
+#
+#func _on_QuitButton_pressed():
+#	get_tree().change_scene("res://StartMenu.tscn")

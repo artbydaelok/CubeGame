@@ -4,7 +4,7 @@ onready var particles = $ExtMesh/ParticleStart/ExtinguishingParticles
 var rotate = false
 
 func spin():
-	look_at_boss = false
+	look_at_target = false
 	rotate = true
 	$Timer.start()
 
@@ -21,5 +21,5 @@ func _process(delta):
 
 func _on_Timer_timeout():
 	rotate = false
-	look_at_boss = true
+	look_at_target = true
 	$ExtMesh.rotation = Vector3(0, PI/2, 0)

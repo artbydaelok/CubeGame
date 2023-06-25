@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ItemDisplay.gd" type="Script" id=1]
+
+[sub_resource type="ImageTexture" id=1]
+
+[node name="ItemDisplay" type="Button"]
+margin_right = 60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_vertical = 0
+toggle_mode = true
+icon = SubResource( 1 )
+icon_align = 1
+script = ExtResource( 1 )
+
+[connection signal="focus_entered" from="." to="." method="_on_ItemDisplay_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_ItemDisplay_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_ItemDisplay_pressed"]

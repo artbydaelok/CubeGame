@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 4, 6, 2 )
 
-[node name="FireBoss" type="KinematicBody" groups=["Enemy"]]
+[node name="FireBoss" type="KinematicBody" groups=["enemy"]]
 script = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]

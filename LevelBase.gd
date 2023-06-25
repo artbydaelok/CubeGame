@@ -6,4 +6,3 @@ func _ready():
 	for station in $ShuffleStations.get_children():
 		station.connect("inventory_shuffling", $InventoryShuffle, "toggle")
 
-# BUG : DUPLICATE DISPLAY ON CUBE SIDES

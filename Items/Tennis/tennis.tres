@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource( 2 )
 name = "Tennis"
-description = ""
+description = "Throw a ball at your enemies. The ball bounces back, if you catch it as it lands, you can hit it back at the enemy."
 texture = ExtResource( 1 )
 cooldown = 10.0
 on_cooldown = false

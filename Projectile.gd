@@ -31,6 +31,7 @@ var last_direction
 var homing_target
 
 var player
+var target
 
 enum PROJECTILE_STATE {DEFAULT, SHOT, LOB,THROWN, HOMING}
 
@@ -40,7 +41,7 @@ func _ready():
 	randomize()
 	$SelfDestroyTimer.start()
 	
-	look_at(player.boss.translation, Vector3.UP)
+	look_at(player.target.translation, Vector3.UP)
 	set_as_toplevel(true)
 	
 	#arc.connect("tween_completed", self, "_on_tween_completed")
@@ -94,7 +95,7 @@ func home_to_target(target, strength):
 	#add_central_force(self.translation.direction_to(target.translation + Vector3.UP * 2) * strength)
 
 func _on_Area_body_entered(body):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("enemy"):
 		body.take_damage(damage)
 
 

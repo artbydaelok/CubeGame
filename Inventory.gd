@@ -21,11 +21,20 @@ func set_active_item(item_index):
 	active_item_index = item_index
 	emit_signal("active_changed" , [item_index])
 
+func get_active_item_index():
+	return active_item_index
+
 func get_active_item():
 	return items[active_item_index]
 
 func get_item(item_index):
 	return items[item_index]
+	
+func get_items_array():
+	return items
+	
+func get_item_count():
+	return items.size()
 
 func set_item(item_index, item):
 	# Save a reference to the item previously at this slot
@@ -50,6 +59,15 @@ func swap_items(item_index, target_item_index):
 	items[item_index] = targetItem
 	# Finally we emit the signal for items changed along with the indexes of those items
 	emit_signal("items_changed", [item_index, target_item_index])
+	
+func swap_items_by_ref(item, target_item, item_index):
+	#var temp_target = target_item
+	#target_item = item
+	#item = temp_target
+	
+	set_item(item_index, item)
+	
+	emit_signal("items_changed", [item_index])
 	
 func use_item():
 	emit_signal("item_used", items[active_item_index].cooldown)
