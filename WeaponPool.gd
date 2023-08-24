@@ -1,9 +1,9 @@
 extends Resource
 
-var shotgun = preload("res://Items/shotgun.tres")
+var shotgun = preload("res://Items/Shotgun/shotgun.tres")
 var molotov = preload("res://Items/molotov.tres")
-var boomerang = preload("res://Items/boomerang.tres")
-var spear = preload("res://Items/spear.tres")
+var boomerang = preload("res://Items/Boomerang/boomerang.tres")
+var spear = preload("res://Items/Spear/spear.tres")
 var pepper_spray = preload("res://Items/pepper_spray.tres")
 
 

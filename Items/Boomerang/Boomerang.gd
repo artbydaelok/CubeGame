@@ -4,7 +4,7 @@ func throw_boomerang(target):
 	var offset = 25
 	acceleration = 1
 	#acceleration = 0
-	shoot_at(player.boss.translation + Vector3(rand_range(-offset, offset), 0, rand_range(-offset, offset)), 0)
+	shoot_at(player.target.translation + Vector3(rand_range(-offset, offset), 0, rand_range(-offset, offset)), 0)
 	homing_target = target
 	$HomingStart.start()
 	

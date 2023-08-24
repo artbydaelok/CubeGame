@@ -1,8 +1,8 @@
 extends Spatial
 
 export var rotation_speed = PI/2
-export var max_zoom = 3.0
-export var min_zoom = 0.5
+export var max_zoom = 3.5
+export var min_zoom = 2.5
 export var zoom_speed = 0.09
 
 export (NodePath) var target

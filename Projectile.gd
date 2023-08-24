@@ -26,7 +26,6 @@ var is_lobbed = false
 
 var last_position
 var last_direction
-#
 
 var homing_target
 

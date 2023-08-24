@@ -299,11 +299,16 @@ func roll(dir):
 func _on_Tween_tween_step(object, key, elapsed, value):
 	pivot.transform = pivot.transform.orthonormalized()
 
+func update_target():
+	var closest_index = 0
+	for _t in possible_targets:
+		translation.distance_to(_t.translation)
 
+# Detecting enemies that get within the enemy detection radius
 func _on_EnemyDetectionRadius_body_entered(body):
 	if body.is_in_group("enemy"):
 		if possible_targets.size() == 0:
 			target = body
-			print("Adding Target")
+			
+		# Add them to the list of possible targets
 		possible_targets.append(body)
-		print(target)
